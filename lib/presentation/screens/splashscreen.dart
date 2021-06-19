@@ -1,0 +1,58 @@
+import 'dart:async';
+
+import 'package:employee/presentation/screens/authscren.dart';
+import 'package:employee/presentation/utils/utility.dart';
+import 'package:employee/presentation/widgets/loading.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
+class SplashScreen extends StatefulWidget {
+  @override
+  _SplashScreenState createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    startTimer();
+    super.initState();
+  }
+
+  startTimer() {
+    Timer(Duration(seconds: 2), changeScreen);
+  }
+
+  changeScreen() async {
+    await Navigator.pushReplacement(context,
+        CupertinoPageRoute(builder: (context) => AuthenticationScreen()));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: primaryColor,
+      body: Container(
+        height: screenHeight(context),
+        width: screenWidth(context),
+        decoration: BoxDecoration(
+          gradient: gradientDecoration,
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Text(
+                "Employee",
+                style: text50.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            verticalSpaceMedium20,
+            Loading(),
+          ],
+        ),
+      ),
+    );
+  }
+}
