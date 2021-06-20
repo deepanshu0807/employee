@@ -1,3 +1,4 @@
+import 'package:employee_shared/domain/auth/i_employeeuser_repo.dart';
 import 'package:employee_shared/employee_shared.dart';
 
 @module
@@ -17,6 +18,9 @@ abstract class BlocInjectablemodule {
   // Services
   @LazySingleton(as: IAuth)
   FirebaseAuthService get fbAuthService => FirebaseAuthService(fbAuth, fStore);
+
+  @LazySingleton(as: IEmployeeUserRepo)
+  EmployeeUserRepo get mmployeeUserRepo => EmployeeUserRepo(fStore);
 
   //Blocs
   @injectable

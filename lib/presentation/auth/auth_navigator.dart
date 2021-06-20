@@ -2,6 +2,7 @@ import 'package:employee/presentation/screens/authscren.dart';
 import 'package:employee/presentation/screens/homepage.dart';
 import 'package:employee/presentation/screens/splashscreen.dart';
 import 'package:employee_shared/employee_shared.dart';
+import 'package:employee/application/user_details_watcher/user_details_watcher_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,6 +24,9 @@ class AuthNavigator extends StatelessWidget {
               },
               authenticated: (authUser) {
                 debugPrint("state is authenticated");
+
+                context.read<UserDetailsWatcherBloc>().add(
+                    UserDetailsWatcherEvent.getMySavedDetails(authUser.user));
                 Future.delayed(
                   const Duration(milliseconds: 2000),
                   () {
