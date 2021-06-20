@@ -9,12 +9,16 @@ class TextInputCustomField extends StatelessWidget {
     this.textInputType,
     @required this.controller,
     this.errorText,
+    this.onChanged,
+    this.validator,
   }) : super(key: key);
   final String label;
   final IconData iconData;
   final TextInputType textInputType;
   final TextEditingController controller;
   final String errorText;
+  final Function onChanged;
+  final Function validator;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +32,7 @@ class TextInputCustomField extends StatelessWidget {
     return ValueListenableBuilder(
         valueListenable: hidePasswordNotifier,
         builder: (context, value, child) {
-          return TextField(
+          return TextFormField(
             keyboardType: textInputType,
             obscureText: isPassword ? value : false,
             style: text20.copyWith(fontSize: 20),
@@ -55,6 +59,8 @@ class TextInputCustomField extends StatelessWidget {
             ),
             controller: controller,
             cursorColor: primaryColor,
+            onChanged: onChanged,
+            validator: validator,
           );
         });
   }

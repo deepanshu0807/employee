@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "297743690144",
+    "project_id": "employee-attendance-test",
+    "storage_bucket": "employee-attendance-test.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:297743690144:android:2b0898be11e27af4471cc5",
+        "android_client_info": {
+          "package_name": "com.employee.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "297743690144-0t34a3869q0v78mfhks204srkuo0d41p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1E9Rwl6lCCkgBmvv8Cdx3seQ_JoIw8ik"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "297743690144-0t34a3869q0v78mfhks204srkuo0d41p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
