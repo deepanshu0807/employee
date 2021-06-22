@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:employee/presentation/auth/auth_navigator.dart';
+import 'package:employee/presentation/auth/navigator.dart';
 import 'package:employee/presentation/screens/authscren.dart';
 import 'package:employee/presentation/screens/homepage.dart';
 import 'package:employee/presentation/utils/utility.dart';
@@ -17,7 +18,7 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // startTimer();
+    //startTimer();
     super.initState();
   }
 
@@ -26,8 +27,8 @@ class _SplashScreenState extends State<SplashScreen> {
   // }
 
   // changeScreen() async {
-  //   await Navigator.pushReplacement(context,
-  //       CupertinoPageRoute(builder: (context) => AuthenticationScreen()));
+  //   await Navigator.pushReplacement(
+  //       context, CupertinoPageRoute(builder: (context) => AppNavigator()));
   // }
 
   @override

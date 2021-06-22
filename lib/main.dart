@@ -7,6 +7,7 @@ import 'package:employee/application/user_details_watcher/user_details_watcher_b
 
 import 'application/auth/sign_up_form_bloc/signup_form_bloc.dart';
 import 'application/auth/signinform/signinform_bloc.dart';
+import 'application/customer_details_form_bloc/user_details_form_bloc.dart';
 import 'config/di/injection.dart';
 
 void main() async {
@@ -40,6 +41,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (_) => getIt<UserDetailsWatcherBloc>()),
             BlocProvider(create: (_) => getIt<SigninformBloc>()),
             BlocProvider(create: (_) => getIt<SignupFormBloc>()),
+            BlocProvider(create: (_) => getIt<UserDetailsFormBloc>()),
           ],
           child: MaterialApp(
             title: 'Employee',

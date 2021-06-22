@@ -1,3 +1,4 @@
+import 'package:employee/application/customer_details_form_bloc/user_details_form_bloc.dart';
 import 'package:employee/presentation/screens/authscren.dart';
 import 'package:employee/presentation/screens/homepage.dart';
 import 'package:employee/presentation/screens/splashscreen.dart';
@@ -27,8 +28,11 @@ class AuthNavigator extends StatelessWidget {
 
                 context.read<UserDetailsWatcherBloc>().add(
                     UserDetailsWatcherEvent.getMySavedDetails(authUser.user));
+                context
+                    .read<UserDetailsFormBloc>()
+                    .add(UserDetailsFormEv.initializeUser(authUser.user));
                 Future.delayed(
-                  const Duration(milliseconds: 2000),
+                  const Duration(milliseconds: 1500),
                   () {
                     Navigator.pushReplacement(context,
                         CupertinoPageRoute(builder: (context) => Homepage()));
@@ -38,7 +42,7 @@ class AuthNavigator extends StatelessWidget {
               unauthenticated: (_) {
                 debugPrint("state is unauthenticated");
                 Future.delayed(
-                  const Duration(milliseconds: 2000),
+                  const Duration(milliseconds: 1500),
                   () {
                     Navigator.pushReplacement(
                         context,
@@ -46,6 +50,21 @@ class AuthNavigator extends StatelessWidget {
                             builder: (context) => AuthenticationScreen()));
                   },
                 );
+              },
+            );
+          },
+        ),
+        BlocListener<UserDetailsWatcherBloc, UserDetailsWatcherState>(
+          listener: (context, state) {
+            state.map(
+              initial: (_) {},
+              loadInProgress: (_) {},
+              loadFailure: (_) {},
+              loadSuccess: (load) {
+                debugPrint("StoreUser:${load.storeUser.name}");
+                context
+                    .read<UserDetailsFormBloc>()
+                    .add(UserDetailsFormEv.initializeUser(load.storeUser));
               },
             );
           },
