@@ -12,6 +12,14 @@ final kRoundedShape = RoundedRectangleBorder(borderRadius: kBorderR20);
 const kIconSize = 35.0;
 final kColorTween12 = ColorTween(begin: Colors.grey, end: Colors.black);
 
+const mainC = MainAxisAlignment.center;
+const mainSB = MainAxisAlignment.spaceBetween;
+const mainSE = MainAxisAlignment.spaceEvenly;
+const crossS = CrossAxisAlignment.start;
+const crossE = CrossAxisAlignment.end;
+
+const ell = TextOverflow.ellipsis;
+
 BoxDecoration containerDecoration(Color color) {
   return BoxDecoration(borderRadius: kBorderR15, color: color, boxShadow: [
     BoxShadow(
@@ -30,4 +38,28 @@ final gradientDecoration = LinearGradient(
 
 double designFactor(Size screenSize) {
   return screenSize.width / 375.0;
+}
+
+String getDoubleDigit(String value) {
+  if (value.length >= 2) return value;
+  return "0" + value;
+}
+
+String getFormattedDate(DateTime day) {
+  String formattedDate = getDoubleDigit(day.day.toString()) +
+      "-" +
+      getDoubleDigit(day.month.toString()) +
+      "-" +
+      getDoubleDigit(day.year.toString());
+  return formattedDate;
+}
+
+String getFormattedTime(DateTime day) {
+  String time = getDoubleDigit(day.hour.toString()) +
+      ":" +
+      getDoubleDigit(day.minute.toString()) +
+      ":" +
+      getDoubleDigit(day.second.toString());
+
+  return time;
 }

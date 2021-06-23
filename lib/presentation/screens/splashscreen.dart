@@ -1,12 +1,6 @@
-import 'dart:async';
-
 import 'package:employee/presentation/auth/auth_navigator.dart';
-import 'package:employee/presentation/auth/navigator.dart';
-import 'package:employee/presentation/screens/authscren.dart';
-import 'package:employee/presentation/screens/homepage.dart';
 import 'package:employee/presentation/utils/utility.dart';
 import 'package:employee/presentation/widgets/loading.dart';
-import 'package:employee_shared/employee_shared.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

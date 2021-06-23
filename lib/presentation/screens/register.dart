@@ -1,9 +1,5 @@
 import 'package:employee/application/auth/sign_up_form_bloc/signup_form_bloc.dart';
-import 'package:employee/application/user_details_watcher/user_details_watcher_bloc.dart';
 import 'package:employee/presentation/auth/auth_navigator.dart';
-import 'package:employee/presentation/screens/authscren.dart';
-import 'package:employee/presentation/screens/homepage.dart';
-import 'package:employee/presentation/screens/splashscreen.dart';
 import 'package:employee/presentation/utils/space.dart';
 import 'package:employee/presentation/utils/utility.dart';
 import 'package:employee/presentation/widgets/text_input_field.dart';
@@ -25,6 +21,7 @@ class _RegisterState extends State<Register> {
   TextEditingController nameC = TextEditingController();
   TextEditingController emailC = TextEditingController();
   TextEditingController passwordC = TextEditingController();
+  TextEditingController phoneC = TextEditingController();
   final RoundedLoadingButtonController _btnController =
       RoundedLoadingButtonController();
 
@@ -69,15 +66,6 @@ class _RegisterState extends State<Register> {
                   setState(() {
                     _btnController.success();
                   });
-                  // Future.delayed(
-                  //   const Duration(milliseconds: 3000),
-                  //   () {
-                  //     Navigator.pushReplacement(
-                  //         context,
-                  //         CupertinoPageRoute(
-                  //             builder: (context) => SplashScreen()));
-                  //   },
-                  // );
                 },
               );
             },
@@ -98,6 +86,7 @@ class _RegisterState extends State<Register> {
                   physics: BouncingScrollPhysics(),
                   children: [
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         InkWell(
                           onTap: () => Navigator.pop(context),
@@ -198,6 +187,35 @@ class _RegisterState extends State<Register> {
                     ),
                     verticalSpaceMedium25,
                     Text(
+                      " Phone number",
+                      style: text22,
+                    ),
+                    verticalSpaceMedium15,
+                    TextInputCustomField(
+                      label: 'Your contact number',
+                      iconData: Icons.contact_phone,
+                      controller: phoneC,
+                      textInputType: TextInputType.phone,
+                      onChanged: (val) {
+                        context
+                            .read<SignupFormBloc>()
+                            .add(SignupFormEvent.phoneChanged("+91$val"));
+                      },
+                      validator: (_) => context
+                          .read<SignupFormBloc>()
+                          .state
+                          .phoneNumber
+                          .value
+                          .fold(
+                            (f) => f.maybeMap(
+                                invalidPhone: (_) =>
+                                    "Enter a valid phone number",
+                                orElse: () => null),
+                            (_) => null,
+                          ),
+                    ),
+                    verticalSpaceMedium25,
+                    Text(
                       " Email address",
                       style: text22,
                     ),
@@ -274,6 +292,7 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                     ),
+                    verticalSpaceMedium25,
                   ],
                 ),
               ),

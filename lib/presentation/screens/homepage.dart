@@ -1,9 +1,12 @@
+import 'package:employee/application/attendance_watcher_bloc/attendance_watcher_bloc.dart';
 import 'package:employee/presentation/auth/auth_navigator.dart';
 import 'package:employee/presentation/utils/utility.dart';
 import 'package:employee/presentation/widgets/loading.dart';
 import 'package:employee_shared/employee_shared.dart';
 import 'package:flutter/material.dart';
 import 'package:employee/application/user_details_watcher/user_details_watcher_bloc.dart';
+
+import 'landing_page.dart';
 
 class Homepage extends StatelessWidget {
   const Homepage({Key key}) : super(key: key);
@@ -24,7 +27,9 @@ class Homepage extends StatelessWidget {
                   user: user.storeUser,
                 );
               } else {
-                return Placeholder(); // TODO
+                // context.read<AttendanceWatcherBloc>().add(
+                //     AttendanceWatcherEvent.getAllAttendances(user.storeUser));
+                return LandingPage();
               }
             },
           );
@@ -64,6 +69,7 @@ class UnApprovedWidget extends StatelessWidget {
             verticalSpaceSmall,
             Text(
               user.name.getOrElse("NA"),
+              maxLines: 2,
               style:
                   text30.copyWith(fontSize: 35.sp, fontWeight: FontWeight.bold),
               overflow: TextOverflow.ellipsis,

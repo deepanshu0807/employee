@@ -1,3 +1,4 @@
+import 'package:employee/application/attendance_watcher_bloc/attendance_watcher_bloc.dart';
 import 'package:employee/application/customer_details_form_bloc/user_details_form_bloc.dart';
 import 'package:employee/presentation/screens/authscren.dart';
 import 'package:employee/presentation/screens/homepage.dart';
@@ -28,6 +29,8 @@ class AuthNavigator extends StatelessWidget {
 
                 context.read<UserDetailsWatcherBloc>().add(
                     UserDetailsWatcherEvent.getMySavedDetails(authUser.user));
+                context.read<AttendanceWatcherBloc>().add(
+                    AttendanceWatcherEvent.getAllAttendances(authUser.user));
                 context
                     .read<UserDetailsFormBloc>()
                     .add(UserDetailsFormEv.initializeUser(authUser.user));

@@ -23,6 +23,7 @@ class TextInputCustomField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isPassword = textInputType == TextInputType.visiblePassword;
+    final isNumber = textInputType == TextInputType.phone;
     final outlineInputBorder = OutlineInputBorder(
       borderRadius: BorderRadius.circular(20),
       borderSide: BorderSide(
@@ -55,7 +56,16 @@ class TextInputCustomField extends StatelessWidget {
               focusedBorder: outlineInputBorder.copyWith(
                   borderSide: BorderSide(color: primaryColor, width: 2)),
               hintStyle: TextStyle(color: Colors.grey),
-              prefixIcon: Icon(iconData, color: primaryColor, size: 25),
+              prefixIcon: isNumber
+                  ? Container(
+                      padding: kPadding10,
+                      child: Text(
+                        "+91",
+                        style:
+                            text20.copyWith(fontSize: 20, color: Colors.grey),
+                      ),
+                    )
+                  : Icon(iconData, color: primaryColor, size: 25),
             ),
             controller: controller,
             cursorColor: primaryColor,
