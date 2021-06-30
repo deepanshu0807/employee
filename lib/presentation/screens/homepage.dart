@@ -107,15 +107,32 @@ class SignOutWidget extends StatelessWidget {
           return state.map(
             initial: (_) => Loading(),
             authenticated: (user) {
-              return InkWell(
-                onTap: () {
+              return OutlinedButton(
+                onPressed: () {
                   context
                       .read<AuthWatcherBloc>()
                       .add(AuthWatcherEvent.signedOut(user.user));
                 },
-                child: Text(
-                  'Sign out',
-                  style: text22,
+                style: OutlinedButton.styleFrom(
+                  backgroundColor: secondaryColor,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: kBorderR20,
+                  ),
+                  side: BorderSide(color: Colors.grey[200]),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.logout,
+                      size: 18,
+                      color: Colors.black,
+                    ),
+                    horizontalSpaceTiny,
+                    Text(
+                      "Logout",
+                      style: text16,
+                    )
+                  ],
                 ),
               );
             },
