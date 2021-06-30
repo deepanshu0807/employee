@@ -14,15 +14,46 @@ class LandingPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
-        padding: kPadding20,
+        padding: kPadding20.copyWith(top: 30),
         height: screenHeight(context),
         width: screenWidth(context),
-        decoration: BoxDecoration(
-          gradient: gradientDecoration,
-        ),
+        // decoration: BoxDecoration(
+        //   gradient: gradientDecoration,
+        // ),
+
         child: Column(
           children: [
             UserDataContainer(),
+            verticalSpaceMedium30,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 15.w),
+              child: Row(
+                mainAxisAlignment: mainSB,
+                children: [
+                  Expanded(
+                    flex: 4,
+                    child: Text(
+                      "Date",
+                      style: text18.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      "Time",
+                      style: text18.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Text(
+                      "Record",
+                      style: text18.copyWith(fontWeight: FontWeight.bold),
+                    ),
+                  )
+                ],
+              ),
+            ),
             verticalSpaceMedium20,
             Expanded(
               child: AttendanceList(),
@@ -47,17 +78,12 @@ class UserDataContainer extends StatelessWidget {
           loadFailure: (_) => Center(child: Loading()),
           loadSuccess: (user) {
             final data = user.storeUser;
-            final dateTime = DateTime.now();
-            final date = getFormattedDate(dateTime);
-            final time = getFormattedTime(dateTime);
             return Container(
               width: double.infinity,
               margin: kPadding10.copyWith(left: 0, right: 0),
-              padding: kPadding20,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: kBorderR10,
-              ),
+              padding: kPadding10.copyWith(left: 20),
+              decoration: containerDecoration(
+                  Colors.white, primaryColor.withOpacity(0.7)),
               child: Row(
                 mainAxisAlignment: mainSB,
                 children: [
@@ -67,47 +93,45 @@ class UserDataContainer extends StatelessWidget {
                       Text(
                         data.name.getOrElse("NA"),
                         style: text22.copyWith(fontWeight: FontWeight.bold),
-                        maxLines: 2,
+                        maxLines: 1,
                         overflow: ell,
                       ),
                       verticalSpaceMedium15,
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.calendar_today,
-                            color: Colors.grey,
+                      OutlinedButton(
+                        onPressed: () {},
+                        style: OutlinedButton.styleFrom(
+                          backgroundColor: primaryColor,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: kBorderR20,
                           ),
-                          horizontalSpaceSmall,
-                          Text(
-                            date,
-                            style: text18,
-                          ),
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Icon(
-                            Icons.access_time,
-                            color: Colors.grey,
-                          ),
-                          horizontalSpaceSmall,
-                          Text(
-                            time,
-                            style: text18,
-                          ),
-                        ],
-                      ),
+                          side: BorderSide(color: Colors.grey[200]),
+                        ),
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.edit_outlined,
+                              size: 18,
+                              color: Colors.black,
+                            ),
+                            horizontalSpaceTiny,
+                            Text(
+                              "Edit",
+                              style: text16,
+                            )
+                          ],
+                        ),
+                      )
                     ],
                   ),
                   Container(
-                    height: 100.h,
-                    width: 100.h,
+                    height: 80.h,
+                    width: 80.h,
                     decoration: BoxDecoration(
-                      shape: BoxShape.circle,
+                      borderRadius: kBorderR10,
                       color: Colors.white,
                     ),
                     child: ClipRRect(
-                      borderRadius: BorderRadius.circular(100),
+                      borderRadius: BorderRadius.circular(10),
                       child: Image.asset(
                         "images/empty_profile.png",
                         fit: BoxFit.cover,

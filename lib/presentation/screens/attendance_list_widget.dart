@@ -73,14 +73,17 @@ class AttendanceListWidget extends StatelessWidget {
     final date = getFormattedDate(data.dateTime);
     final time = getFormattedTime(data.dateTime);
     return Container(
-      margin: kPadding10.copyWith(top: 5, bottom: 5),
+      margin: kPadding10.copyWith(top: 5, bottom: 5, right: 0, left: 0),
       padding: kPadding20,
       decoration: BoxDecoration(
+        boxShadow: [shadow(Colors.grey[300])],
         gradient: LinearGradient(
           colors: [
             Colors.white,
             Colors.white,
-            data.type == AttendanceType.absent() ? Colors.red : Colors.green
+            data.type == AttendanceType.absent()
+                ? Colors.red[100]
+                : Colors.green[100]
           ],
           begin: Alignment.centerLeft,
           end: Alignment.centerRight,
@@ -90,28 +93,30 @@ class AttendanceListWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: mainSB,
         children: [
-          Row(
-            children: [
-              Icon(
-                data.type == AttendanceType.present()
-                    ? Icons.check
-                    : Icons.close,
+          Expanded(
+            flex: 4,
+            child: Text(
+              date,
+              style: text16,
+            ),
+          ),
+          Expanded(
+            flex: 3,
+            child: Text(
+              time,
+              style: text16,
+            ),
+          ),
+          Expanded(
+            flex: 2,
+            child: Text(
+              data.type.toValueString(),
+              style: text20.copyWith(
                 color: data.type == AttendanceType.present()
                     ? Colors.green
                     : Colors.red,
+                fontWeight: FontWeight.bold,
               ),
-              horizontalSpaceSmall,
-              Text(
-                date,
-                style: text20,
-              ),
-            ],
-          ),
-          Text(
-            data.type.toValueString(),
-            style: text20.copyWith(
-              color: Colors.white,
-              fontWeight: FontWeight.bold,
             ),
           )
         ],

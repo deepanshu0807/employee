@@ -20,14 +20,22 @@ const crossE = CrossAxisAlignment.end;
 
 const ell = TextOverflow.ellipsis;
 
-BoxDecoration containerDecoration(Color color) {
+BoxDecoration containerDecoration(Color color, Color shadow) {
   return BoxDecoration(borderRadius: kBorderR15, color: color, boxShadow: [
     BoxShadow(
-      color: secondaryColor.withOpacity(0.4),
-      spreadRadius: 30,
-      blurRadius: 5,
+      color: shadow,
+      blurRadius: 30.0,
+      offset: Offset(0, 8),
     )
   ]);
+}
+
+BoxShadow shadow(Color color) {
+  return BoxShadow(
+    color: color,
+    blurRadius: 30.0,
+    offset: Offset(0, 10),
+  );
 }
 
 final gradientDecoration = LinearGradient(
@@ -57,9 +65,7 @@ String getFormattedDate(DateTime day) {
 String getFormattedTime(DateTime day) {
   String time = getDoubleDigit(day.hour.toString()) +
       ":" +
-      getDoubleDigit(day.minute.toString()) +
-      ":" +
-      getDoubleDigit(day.second.toString());
+      getDoubleDigit(day.minute.toString());
 
   return time;
 }
